@@ -1,5 +1,11 @@
 # BTFoundationSearch
-BT Financial Foundation Grant Search project
+BT Financial Foundation Grant Search project.
+
+Project developed using Node.js, React.js, Express.js
+
+About:
+The web application aggregates information on grants related to the
+search query keywords using Google's custom search API.
 
 Development Team:
 David Vu (45408580)
