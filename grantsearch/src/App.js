@@ -7,9 +7,9 @@ function App() {
     <div className="App">
       <SearchBox/>
       <div className='resultBoxes'>
-        <DisplayBox name = 'Grant 1'/>
-        <DisplayBox name = 'Grant 2'/>
-        <DisplayBox name = 'Grant 3'/>
+        <DisplayBox name = 'Grant 1' desc = 'something1'/>
+        <DisplayBox name = 'Grant 2' desc = 'something2'/>
+        <DisplayBox name = 'Grant 3' desc = 'something3'/>
       </div>
     </div>
   );
