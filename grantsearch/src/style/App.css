@@ -24,10 +24,14 @@
 }
 
 .resultBoxes {
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1vw 2vh;
+  margin: 1vw 2vh; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: 50vh 30vw;
 }
 .displayBox {
   background-color: rgb(220, 220, 220);
