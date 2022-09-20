@@ -29,12 +29,19 @@
   gap: 10px;
   grid-auto-rows: 50vh 30vw;
 }
+
 .displayBox {
   background-color: rgb(220, 220, 220);
   padding: 1vw;
   margin: 2vw;
 }
 
+.result-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 @media screen and (max-width: 700px) {
   .resultBoxes {
     display: grid;
