@@ -26,15 +26,15 @@ const auStates = [
     'NT'
 ];
 const getStyles = (loc, location, theme) => {
-return {
-    fontWeight:
-    location.indexOf(loc) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-}
+    return {
+        fontWeight:
+        location.indexOf(loc) === -1
+            ? theme.typography.fontWeightRegular
+            : theme.typography.fontWeightMedium,
+    }
 }
 
-const SearchBox = () => {
+const SearchBox = ({onLocationChange}) => {
   const theme = useTheme()
   const [location, setLocation] = useState([])
   const handleChange = (e) => {
@@ -42,8 +42,11 @@ const SearchBox = () => {
         target: { value },
       } = e;
       setLocation(typeof value === 'string' ? value.split(',') : value,)
+      
   } 
-  
+  const submitData = (e) => {
+    onLocationChange(location)
+  }
   return (
     <div className='search'>
         <h2 className='title'>Grant Search</h2>
@@ -79,7 +82,7 @@ const SearchBox = () => {
                 ))}
                 </Select>
             </FormControl>
-            <Button className='searchBtn' variant="contained" size="large">Search</Button>
+            <Button className='searchBtn' variant="contained" size="large" onClick={submitData}>Search</Button>
         </div>
         </Grid>
     </div>
