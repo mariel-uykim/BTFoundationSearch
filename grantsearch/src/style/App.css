@@ -28,6 +28,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   grid-auto-rows: 50vh 30vw;
+  margin: auto 5vw;
 }
 
 .displayBox {

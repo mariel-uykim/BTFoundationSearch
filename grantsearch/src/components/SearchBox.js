@@ -50,7 +50,7 @@ const SearchBox = () => {
         <Grid container justifyContent="center">
         <div className='searchBox'>
             <TextField id='search-box' label="Search" variant="outlined" />
-            <FormControl sx={{ m: 1, width: 300 }}>
+            <FormControl sx={{ m: 1, width: 200 }}>
                 <InputLabel id="select-loc-label">Location</InputLabel>
                 <Select
                 labelId="select-loc-label"

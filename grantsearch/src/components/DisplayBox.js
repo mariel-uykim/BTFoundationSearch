@@ -12,8 +12,8 @@ const DisplayBox = (props) => {
       <CardMedia
         component="img"
         alt="company logo"
-        height="140"
-        width="160"
+        height="130"
+        width="130"
         image= {props.image ? props.image
         : "http://atlas-content-cdn.pixelsquid.com/stock-images/animal-egg-x7O64d1-600.jpg"}
       />
