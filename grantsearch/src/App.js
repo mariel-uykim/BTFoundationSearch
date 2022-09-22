@@ -8,20 +8,23 @@ function App() {
 
   const [grants, setGrants] = useState(data)
   const [locations, setLocations] = useState(["ALL"])
+  const [query, setQuery] = useState("")
 
   const searchQuery = grants.filter((g) => {
-    if(locations.includes("ALL")|| locations.includes(g.loc)){
-      return (g)
-    }
+    if((query.length == 0 || g.name.includes(query)) &&
+      (locations.includes("ALL")|| locations.includes(g.loc))){
+        return (g)
+      }
   })
 
-  const onLocationChange = (loc) => {
-    setLocations(loc)
+  const onSubmitForm = (data) => {
+    setQuery(data.query)
+    setLocations(data.location)
   }
 
   return (
     <div className="App">
-      <SearchBox onLocationChange={onLocationChange}/>
+      <SearchBox onSubmitForm={onSubmitForm}/>
 
       <div className='resultBoxes'>
         {searchQuery.length > 0 && searchQuery.map((data, key) => {
