@@ -1,6 +1,7 @@
 import './style/App.css';
 import SearchBox from './components/SearchBox';
 import DisplayBox from './components/DisplayBox';
+import axios from 'axios';
 
 function App() {
   return (
