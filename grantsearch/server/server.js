@@ -1,8 +1,10 @@
-//import axios from 'axios'
+require('dotenv').config();
 const express = require('express')
 const app = express()
 const cors = require('cors')
 const {google} = require('googleapis')
+const config = require('../config.js')
+
 app.use(express.json())
 app.use(cors())
 app.use(express.static('build'))
@@ -15,10 +17,9 @@ app.get('/', (request,response) => {
 app.get('/search', (request, response, next) => {
     const{q,start,num} = request.query
     console.log(q,start,num)
-
     customsearch.cse.list({
-        auth: "AIzaSyAIG6GRpYdD_8zG4GKZTR1TjoCuLLtKFD4",
-        cx: "05e246ad62da14962",
+        auth:config.GKey,
+        cx:config.GCx,
         q,start,num
     })
     .then(result => result.data)
