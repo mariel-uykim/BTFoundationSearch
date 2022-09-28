@@ -3,7 +3,8 @@ import SearchBox from './components/SearchBox';
 import DisplayBox from './components/DisplayBox';
 import { useState, useEffect } from 'react'
 import data from './grants.json'
-import axios from 'axios'
+import grantsService from './services/GrantsService';
+
 
 function App() {
 
@@ -18,18 +19,23 @@ function App() {
       }
   })
 
+
   const onSubmitForm = (data) => {
-    setQuery(data.query)
+    setQuery(data.query.replace(/\s/g, '+'))
     setLocations(data.location)
+
+    grantsService.getGrants(query)
+    .then(objects => {
+      setGrants(objects)
+    })
   }
 
   return (
     <div className="App">
       <SearchBox onSubmitForm={onSubmitForm}/>
-
       <div className='resultBoxes'>
         {searchQuery.length > 0 && searchQuery.map((data, key) => {
-          return <DisplayBox key={key} name = {data.name} desc = {data.desc} siteURL={data.siteURL} image={data.imgURL} loc={data.loc}/>
+          return <DisplayBox key={key} name = {data.title} desc = {data.snippet} siteURL={data.link} image={data.imgURL} loc={data.loc}/>
         })}
       </div>
 

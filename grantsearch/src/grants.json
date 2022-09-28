@@ -1,13 +1,13 @@
 [
     {
-        "name" : "Grant 1", 
+        "name" : "Number 1", 
         "desc" : "This is the first grant",
         "imgURL" : "https://logos-world.net/wp-content/uploads/2021/04/Westpac-Banking-Corporation-Logo-2003-present.png",
         "loc" : "NSW",
         "siteURL": "http://yahoo.com"
     },
     {
-        "name" : "Grant 2", 
+        "name" : "Grant 11", 
         "desc" : "This is the second grant",
         "imgURL" : "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Commonwealth_Bank_Logo.svg/1200px-Commonwealth_Bank_Logo.svg.png",
         "loc" : "ACT",
