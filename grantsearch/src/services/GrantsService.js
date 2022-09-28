@@ -1,13 +1,13 @@
 import axios from 'axios'
 
 const getAll = () => {
-    return axios.get("/search")
-                .then(response => response.data)
+    const response = axios.get("/search")
+    return response.data
 }
-const getGrants = (query) => {
-    return axios.get("search/" + query)
-                .then(response => response.data)
-                .then(data => console.log("hello" + data))
+const getGrants = async (query) => {
+    const response = await axios.get("/search/" + query)
+    console.log(response)
+    return response.data
 }
 
 const grantsService = {getAll, getGrants}

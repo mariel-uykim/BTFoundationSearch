@@ -3,7 +3,8 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const {google} = require('googleapis')
-const config = require('../config.js')
+const config = require('../config.js');
+const { isRouteErrorResponse } = require('react-router-dom');
 
 app.use((req, res, next) => {
     res.set('Content-Type', 'application/json');
@@ -20,7 +21,7 @@ app.use(express.static('build'))
 const customsearch = google.customsearch('v1')
 
 app.get('/', (request,response) => {
-    response.send('<h1>search server</h1>')
+    response.send('<h1>this is a web server</h1>')
 })
 
 app.get('/search', (request, response, next) => {
@@ -92,7 +93,7 @@ app.get('/search/:query', (request, response, next) => {
       }
       // res.status(200).send(result);
       console.log(data);
-      response.status(200).send(data);
+      response.json(data)
     })
     .catch((err) => {
         console.log(err)

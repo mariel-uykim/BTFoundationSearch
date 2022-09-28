@@ -15,7 +15,7 @@ const DisplayBox = (props) => {
         height="130"
         width="130"
         image= {props.image ? props.image
-        : "http://atlas-content-cdn.pixelsquid.com/stock-images/animal-egg-x7O64d1-600.jpg"}
+        : "https://artsmidnorthcoast.com/wp-content/uploads/2014/05/no-image-available-icon-6.png"}
       />
       <CardContent className='result-card'>
         <Typography gutterBottom variant="h5" component="div">
