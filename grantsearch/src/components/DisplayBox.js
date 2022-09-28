@@ -8,32 +8,25 @@ const DisplayBox = (props) => {
     window.open(url, '_blank', 'noopener,noreferrer')
   }
   return (
-    <Card sx={{ maxWidth: 345 }} className='displayBox'>
-      <CardMedia
-        component="img"
-        alt="company logo"
-        height="130"
-        width="130"
-        image= {props.image ? props.image
-        : "https://artsmidnorthcoast.com/wp-content/uploads/2014/05/no-image-available-icon-6.png"}
-      />
-      <CardContent className='result-card'>
+    <div className='result-card'>
         <Typography gutterBottom variant="h5" component="div">
-          {props.name}
+          {props.name.length > 50 ?
+              `${props.name.substring(0, 40)}...` : props.name
+            }
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {props.desc}
+          {props.desc.length > 140 ?
+            `${props.desc.substring(0, 120)}...` : props.desc
+          }
         </Typography>
         <Stack direction="row" alignItems="center" gap={1}>
             <LocationOnIcon color='disabled' fontSize='small'/>
-            <Typography variant="subtitle2" color="text.secondary">{props.loc}</Typography>
+            <Typography variant="subtitle2" color="text.secondary">{props.loc ? props.loc : "ALL"}</Typography>
         </Stack>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Bookmark</Button>
+        <CardActions>
         <Button size="small" onClick={() => openLink(props.siteURL)}>Open Webpage</Button>
       </CardActions>
-    </Card>
+    </div>
   )
 }
 

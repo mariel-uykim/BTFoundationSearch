@@ -36,38 +36,25 @@
   margin: 2em 5em;
 }
 .resultBoxes {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  grid-auto-rows: 50vh 30vw;
-  margin: auto 5vw;
+  display: 'flex';
+  flex-direction: 'column';
+  margin: auto 10vw;
+  width: 80%;
 }
-
+.result-card {
+  border-bottom: 1px solid rgb(169, 169, 169);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.result-card:hover {
+  background-color: rgb(189, 189, 189);
+}
 .displayBox {
   background-color: rgb(220, 220, 220);
   padding: 1vw;
   margin: 2vw;
 }
 
-.result-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-@media screen and (max-width: 700px) {
-  .resultBoxes {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    grid-auto-rows: 50vh 30vw;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .resultBoxes {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    grid-auto-rows: 50vh 30vw;
-  }
-}
