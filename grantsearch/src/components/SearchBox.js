@@ -1,8 +1,8 @@
 import { React, useState, } from 'react'
 import '../style/App.css'
 import { useTheme } from '@mui/material/styles'
-import { Box, TextField, Button, MenuItem, FormControl, 
-        InputLabel, FilledInput, Chip, Select, Grid, FormGroup }from '@mui/material'
+import { TextField, Button, MenuItem, FormControl, 
+        InputLabel, Select, Grid, FormGroup }from '@mui/material'
 
 const ITEM_HEIGHT = 40
 const ITEM_PADDING_TOP = 20
@@ -25,6 +25,7 @@ const auStates = [
     'SA',
     'NT'
 ];
+
 const getStyles = (loc, location, theme) => {
     return {
         fontWeight:
@@ -36,19 +37,17 @@ const getStyles = (loc, location, theme) => {
 
 const SearchBox = ({onSubmitForm}) => {
   const theme = useTheme()
-  const [location, setLocation] = useState(["ALL"])
-  const [query, setQuery] = useState([])
+  const [location, setLocation] = useState("ALL")
+  const [query, setQuery] = useState()
 
   const handleLocChange = (e) => {
-    const {
-        target: { value },
-      } = e;
-
-    setLocation(typeof value === 'string' ? value.split(',') : value,)    
+    setLocation(e.target.value)    
   }
 
   const submitData = (e) => {
+    console.log("s: " + query + " " + location)
     onSubmitForm({"query": query, "location": location})
+    e.preventDefault();
   }
 
   return (
@@ -67,25 +66,17 @@ const SearchBox = ({onSubmitForm}) => {
                     onChange={(e) => setQuery(e.target.value)}
                 />
                 <div className='space'></div>
-                <FormControl sx={{ width: 300 }}>
-                    <InputLabel id="select-loc-label">Location</InputLabel>
-                    <Select
-                        sx={{ height: 56 }}
-                        labelId="select-loc-label"
-                        id="select-loc"
-                        multiple
-                        value={location}
-                        onChange={handleLocChange}
-                        input={<FilledInput id="select-multiple-loc" label="Location" />}
-                        renderValue={(selected) => (
-                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.3 }}>
-                            {selected.map((value) => (
-                                <Chip key={value} label={value} />
-                            ))}
-                            </Box>
-                        )}
-                        MenuProps={MenuProps}
-                    >
+                <FormControl variant="filled" sx={{ width: 200 }}>
+                  <InputLabel id="select-loc-label">Location</InputLabel>
+                  <Select
+                    sx={{ height: 56 }}
+                    labelId="select-loc-label"
+                    id="select-loc"
+                    value={location}
+                    onChange={handleLocChange}
+                    label="location"
+                    MenuProps={MenuProps}
+                  >
                     {auStates.map((loc) => (
                         <MenuItem
                         key={loc}
@@ -95,7 +86,7 @@ const SearchBox = ({onSubmitForm}) => {
                         {loc}
                         </MenuItem>
                     ))}
-                    </Select>
+                  </Select>
                 </FormControl>
                 <div className='space'></div>
                 <Button
@@ -103,8 +94,9 @@ const SearchBox = ({onSubmitForm}) => {
                     className='searchBtn' 
                     variant="contained" 
                     size="large" 
-                    type="submit" 
-                    onClick={submitData}>
+                    type="submit"
+                    onClick={submitData} 
+                    >
                     Search
                 </Button>
             </FormGroup>
