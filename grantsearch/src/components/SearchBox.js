@@ -1,8 +1,9 @@
-import { React, useState, } from 'react'
+import { React, useState } from 'react'
 import '../style/App.css'
 import { useTheme } from '@mui/material/styles'
 import { TextField, Button, MenuItem, FormControl, 
-        InputLabel, Select, Grid, FormGroup }from '@mui/material'
+        InputLabel, Select, Grid, FormGroup, 
+         }from '@mui/material'  
 
 const ITEM_HEIGHT = 40
 const ITEM_PADDING_TOP = 20
@@ -26,6 +27,12 @@ const auStates = [
     'NT'
 ];
 
+const organisations = [
+  "ALL",
+  "Government",
+  "Private Company",
+  "Non-Profit"
+]
 const getStyles = (loc, location, theme) => {
     return {
         fontWeight:
@@ -39,21 +46,31 @@ const SearchBox = ({onSubmitForm}) => {
   const theme = useTheme()
   const [location, setLocation] = useState("ALL")
   const [query, setQuery] = useState()
+  const [domain, setDomain] = useState([])
 
   const handleLocChange = (e) => {
     setLocation(e.target.value)    
   }
 
+  const handleDomainChange = (e) => {
+    const {
+      target: { value },
+    } = e
+    setDomain(
+      typeof value === 'string' ? value.split(',') : value,
+    )
+  }
+ 
   const submitData = (e) => {
     console.log("s: " + query + " " + location)
     onSubmitForm({"query": query, "location": location})
   }
 
   return (
-    <div className='search'>
+      <div className='search'>
         <h2 className='title'>Grant Search</h2>
         <Grid container justifyContent={"center"} alignContent={"center"}>
-        <div className='searchBox'>
+          <div className='searchBox'>
             <FormGroup row={true}>
                 <TextField
                     sx={{ width: 400 }}
@@ -65,7 +82,7 @@ const SearchBox = ({onSubmitForm}) => {
                     onChange={(e) => setQuery(e.target.value)}
                 />
                 <div className='space'></div>
-                <FormControl variant="filled" sx={{ width: 200 }}>
+                <FormControl variant="filled" sx={{ width: 150 }}>
                   <InputLabel id="select-loc-label">Location</InputLabel>
                   <Select
                     sx={{ height: 56 }}
@@ -88,20 +105,43 @@ const SearchBox = ({onSubmitForm}) => {
                   </Select>
                 </FormControl>
                 <div className='space'></div>
-                <Button
-                    sx={{ height: 56 }} 
-                    className='searchBtn' 
-                    variant="contained" 
-                    size="large" 
-                    type="submit"
-                    onClick={submitData} 
+                <FormControl variant="filled" sx={{ width: 200 }}>
+                  <InputLabel id="org-type-label">Org Type</InputLabel>
+                  <Select
+                    sx={{ height: 56 }}
+                    labelId="org-type-label"
+                    id="org-type"
+                    multiple
+                    value={domain}
+                    onChange={handleDomainChange}
+                    MenuProps={MenuProps}
+                  >
+                  {organisations.map((org) => (
+                    <MenuItem
+                      key={org}
+                      value={org}
+                      style={getStyles(org, domain, theme)}
                     >
-                    Search
-                </Button>
+                      {org}
+                    </MenuItem>
+                  ))}
+                  </Select>
+              </FormControl>
+              <div className='space'></div>
+              <Button
+                sx={{ height: 56 }} 
+                className='searchBtn' 
+                variant="contained" 
+                size="large" 
+                type="submit"
+                onClick={submitData} 
+                >
+                Search
+              </Button>
             </FormGroup>
-        </div>
+          </div>
         </Grid>
-    </div>
+      </div>
   )
 }
 
