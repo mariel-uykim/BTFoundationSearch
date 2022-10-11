@@ -47,7 +47,6 @@ const SearchBox = ({onSubmitForm}) => {
   const submitData = (e) => {
     console.log("s: " + query + " " + location)
     onSubmitForm({"query": query, "location": location})
-    e.preventDefault();
   }
 
   return (

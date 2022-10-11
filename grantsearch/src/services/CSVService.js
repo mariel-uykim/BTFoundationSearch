@@ -8,10 +8,10 @@ const convertJSON = (data) => {
 }
 
 const convert = (data) => {
-    const arr = [Object.keys(arr[0])].concat(data)
+    const arr = [Object.keys(data[0])].concat(data)
       
-        return arr.map(i => {
-          return Object.values(i).toString()
+    return arr.map(i => {
+        return Object.values(i).toString()
     }).join('\n')
 }
 

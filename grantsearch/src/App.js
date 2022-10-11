@@ -22,7 +22,6 @@ const App = () => {
 
   useEffect(() => {
     if(change) {
-      console.log("q: " + query)
 
       setLoading(true)
       grantsService.getGrants(query)
@@ -30,21 +29,22 @@ const App = () => {
         setGrants(res.items)
         setQuery("")
         setLoading(false)
-        setChange(false)
       })
+      setChange(false)
     } 
   },
   [change])
 
   const onSubmitForm = (data) => {
-    console.log("d: " + JSON.stringify(data))
     if(data.query != undefined && data.query.length > 0) {
-      setQuery(data.query.replace(/\s/g, '+') + "+grant")
+      var searchTerm = data.query.replace(/\s/g, '+') + "+grant"
       setLocation(data.location)
 
       if(location !== "ALL") {
-        setQuery(query + "+" + location)
-      }
+        searchTerm = searchTerm + "+" + location
+       }
+      
+      setQuery(searchTerm)
       setChange(true)
     }
   }
@@ -63,7 +63,7 @@ const App = () => {
           />
         </div>:
         <div className='content'>
-          <DownloadLink data={grants} title={query}/>
+          {grants.length> 0? <DownloadLink data={grants} title={query}/>: <></>}
           <div className='resultBoxes'>
             {grants.length > 0 && grants.map((data, key) => {
               return <DisplayBox key={key} name = {data.title} desc = {data.snippet} siteURL={data.link} image={data.imgURL} loc={data.loc}/>
