@@ -4,6 +4,8 @@ import DisplayBox from './components/DisplayBox';
 import { useState, useEffect } from 'react'
 import grantsService from './services/GrantsService';
 import ClipLoader from "react-spinners/ClipLoader";
+import DownloadLink from './components/DownloadLink';
+import CSVService from './services/CSVService';
 
 const App = () => {
   const [loading, setLoading] = useState(false)
@@ -60,10 +62,13 @@ const App = () => {
             data-testid="loader"
           />
         </div>:
-        <div className='resultBoxes'>
-          {grants.length > 0 && grants.map((data, key) => {
-            return <DisplayBox key={key} name = {data.title} desc = {data.snippet} siteURL={data.link} image={data.imgURL} loc={data.loc}/>
-          })}
+        <div className='content'>
+          <DownloadLink data={grants} title={query}/>
+          <div className='resultBoxes'>
+            {grants.length > 0 && grants.map((data, key) => {
+              return <DisplayBox key={key} name = {data.title} desc = {data.snippet} siteURL={data.link} image={data.imgURL} loc={data.loc}/>
+            })}
+          </div>
         </div>
       }
     </div>
