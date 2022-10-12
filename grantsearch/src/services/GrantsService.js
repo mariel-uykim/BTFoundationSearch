@@ -6,8 +6,14 @@ const getAll = () => {
 }
 const getGrants = async (query) => {
     console.log("fetching "+JSON.stringify(query)+ "...")
-    const response = await axios.get("/search/" + query)
-    console.log("received response!")
+    var response= ""
+    try{
+        response = await axios.get("/search/" + query)
+    }
+    catch(e) {
+        response = e
+    }
+    console.log("received response!" + JSON.stringify(response))
     return response.data
 }
 

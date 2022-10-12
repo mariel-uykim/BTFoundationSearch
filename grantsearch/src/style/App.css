@@ -69,3 +69,12 @@
   width: 50%;
   justify-content: center;
 }
+
+.spinner {
+  padding: 10%;
+}
+
+.error-msg {
+  padding: 10%;
+  color: #95A5A6;
+}
