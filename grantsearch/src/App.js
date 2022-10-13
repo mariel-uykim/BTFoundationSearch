@@ -10,16 +10,12 @@ import EmptyPage from './components/EmptyPage';
 const App = () => {
   const [loading, setLoading] = useState(false)
   const [grants, setGrants] = useState([])
-  const [location, setLocation] = useState("ALL")
-  const [domains, setDomains] = useState([])
   const [query, setQuery] = useState("")
   const [change, setChange] = useState(false)
   const [noResults, setNoResults] = useState(false)
 
-
   useEffect(() => {
     if(change) {
-
       setLoading(true)
       grantsService.getGrants(query)
       .then(res => {
@@ -29,7 +25,6 @@ const App = () => {
         catch(e) {
           console.log("failed to retrieve results")
           setNoResults(true)
-          setGrants([])
         }
         finally {
           setQuery("")
@@ -51,32 +46,45 @@ const App = () => {
     }
    },[loading])
 
-  const onSubmitForm = (data) => {
-    setNoResults(false)
-    if(data.query != undefined && data.query.length > 0) {
-      var searchTerm = data.query.replace(/\s/g, '+') + "+grant"
-      setLocation(data.location)
-      setDomains(JSON.stringify(data.org).slice(1,-1).split(","))
 
-      if(location !== "ALL") {
-        searchTerm = searchTerm + "+" + location
-      }
-      
-      if(!domains.includes("ALL") && domains.length>0) {
-        for (const [i, value] of domains.entries()) {
-          if (!(i === domains.length - 1)) {
-              searchTerm = searchTerm + "+site:"+value+"+OR"
-          }
-          else{
-            searchTerm = searchTerm + "+site:"+value
-          }
+  const searchQuery = async (data) => {
+    var searchTerm = ""
+    var loc = data.location
+    var dom = JSON.stringify(data.org)
+                    .slice(1,-1)
+                    .split(",")
+                    
+    if(data.query != undefined && data.query.length > 0) {
+      searchTerm = data.query.replace(/\s/g, '+') + "+grant"
+    }
+    console.log("D: " + dom)
+    console.log("D: " + loc)
+
+    if(loc !== "ALL") searchTerm = searchTerm + "+" + loc
+    
+    if(!dom.includes("ALL") && dom.length>0) {
+      for (const [i, val] of dom.entries()) {
+        if (!(i === dom.length - 1)) {
+            searchTerm = searchTerm + "+site:" + val + "+OR"
+            console.log("x: " + val)
+        }
+        else{
+          searchTerm = searchTerm + "+site:" + val
         }
       }
-
-      console.log("SS: " + searchTerm)
-      setQuery(searchTerm)
-      setChange(true)
     }
+
+    return searchTerm
+  }
+
+  const onSubmitForm = async (data) => {
+
+    var res = await searchQuery(data)
+    setNoResults(false)
+
+    setQuery(res)
+    setChange(true)  
+
   }
 
   return (
