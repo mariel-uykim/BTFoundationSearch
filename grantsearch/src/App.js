@@ -23,7 +23,6 @@ const App = () => {
           setGrants(res.items)
         }
         catch(e) {
-          console.log("failed to retrieve results")
           setNoResults(true)
         }
         finally {
@@ -101,12 +100,11 @@ const App = () => {
           />
         </div>:
         <div className='content'>
-          {grants.length> 0 ? <DownloadLink data={grants} title={query}/>: <></>}
+          {(!noResults && grants.length> 0) ? <DownloadLink data={grants} title={query}/>: <></>}
           <div className='resultBoxes'>
-            {grants.length > 0 && grants.map((data, key) => {
+            {noResults ? <EmptyPage/>: grants.map((data, key) => {
               return <DisplayBox key={key} name = {data.title} desc = {data.snippet} siteURL={data.link} image={data.imgURL} loc={data.loc}/>
             })}
-            {noResults ? <EmptyPage/>:<></>}
           </div>
         </div>
       }
