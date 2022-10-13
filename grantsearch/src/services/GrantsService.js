@@ -13,7 +13,7 @@ const getGrants = async (query) => {
     catch(e) {
         response = e
     }
-    console.log("received response!" + JSON.stringify(response))
+    console.log("received response!")
     return response.data
 }
 

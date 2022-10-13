@@ -11,15 +11,11 @@ const App = () => {
   const [loading, setLoading] = useState(false)
   const [grants, setGrants] = useState([])
   const [location, setLocation] = useState("ALL")
+  const [domains, setDomains] = useState([])
   const [query, setQuery] = useState("")
   const [change, setChange] = useState(false)
   const [noResults, setNoResults] = useState(false)
-  // const searchQuery = (grants.length > 0) ? grants.filter((g) => {
-  //   if((query.length == 0 || g.name.includes(query)) &&
-  //     (locations.includes("ALL")|| locations.includes(g.loc))){
-  //       return (g)
-  //     }
-  //   }): ""
+
 
   useEffect(() => {
     if(change) {
@@ -53,18 +49,31 @@ const App = () => {
   
       return () => clearTimeout(timeout)
     }
-   },[loading]);
+   },[loading])
 
   const onSubmitForm = (data) => {
     setNoResults(false)
     if(data.query != undefined && data.query.length > 0) {
       var searchTerm = data.query.replace(/\s/g, '+') + "+grant"
       setLocation(data.location)
+      setDomains(JSON.stringify(data.org).slice(1,-1).split(","))
 
       if(location !== "ALL") {
         searchTerm = searchTerm + "+" + location
-       }
+      }
       
+      if(!domains.includes("ALL") && domains.length>0) {
+        for (const [i, value] of domains.entries()) {
+          if (!(i === domains.length - 1)) {
+              searchTerm = searchTerm + "+site:"+value+"+OR"
+          }
+          else{
+            searchTerm = searchTerm + "+site:"+value
+          }
+        }
+      }
+
+      console.log("SS: " + searchTerm)
       setQuery(searchTerm)
       setChange(true)
     }

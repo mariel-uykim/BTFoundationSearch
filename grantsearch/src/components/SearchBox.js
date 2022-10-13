@@ -4,6 +4,7 @@ import { useTheme } from '@mui/material/styles'
 import { TextField, Button, MenuItem, FormControl, 
         InputLabel, Select, Grid, FormGroup, 
          }from '@mui/material'  
+import { auStates, organisations } from '../misc/constants'
 
 const ITEM_HEIGHT = 40
 const ITEM_PADDING_TOP = 20
@@ -16,23 +17,6 @@ const MenuProps = {
   },
 }
 
-const auStates = [ 
-    'ALL',
-    'NSW',
-    'QLD',
-    'ACT',
-    'WA',
-    'TAS',
-    'SA',
-    'NT'
-];
-
-const organisations = [
-  "ALL",
-  "Government",
-  "Private Company",
-  "Non-Profit"
-]
 const getStyles = (loc, location, theme) => {
     return {
         fontWeight:
@@ -60,10 +44,9 @@ const SearchBox = ({onSubmitForm}) => {
       typeof value === 'string' ? value.split(',') : value,
     )
   }
- 
+  
   const submitData = (e) => {
-    console.log("s: " + query + " " + location)
-    onSubmitForm({"query": query, "location": location})
+    onSubmitForm({"query": query, "location": location, "org": domain})
   }
 
   return (
@@ -118,11 +101,11 @@ const SearchBox = ({onSubmitForm}) => {
                   >
                   {organisations.map((org) => (
                     <MenuItem
-                      key={org}
-                      value={org}
-                      style={getStyles(org, domain, theme)}
+                      key={org.domain}
+                      value={org.domain}
+                      style={getStyles(org.name, domain, theme)}
                     >
-                      {org}
+                      {org.name}
                     </MenuItem>
                   ))}
                   </Select>
