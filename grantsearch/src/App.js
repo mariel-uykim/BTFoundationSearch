@@ -53,8 +53,8 @@ const App = () => {
                     .slice(1,-1)
                     .split(",")
                     
-    if(data.query != undefined && data.query.length > 0) {
-      searchTerm = data.query.replace(/\s/g, '+') + "+grant"
+    if(data.query !== undefined && data.query.length > 0) {
+      searchTerm = data.query.replace(/\s/g, '+') + "+grant+Australia"
     }
     console.log("D: " + dom)
     console.log("D: " + loc)
