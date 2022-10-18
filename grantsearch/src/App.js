@@ -55,7 +55,7 @@ const App = () => {
                     .split(",")
                     
     if(data.query !== undefined && data.query.length > 0) {
-      searchTerm = data.query.replace(/\s/g, '+') + "+grant"
+      searchTerm = data.query.replace(/\s/g, '+') + "+grant+Australia"
     }
 
     if(loc !== "ALL") searchTerm = searchTerm + "+" + loc
