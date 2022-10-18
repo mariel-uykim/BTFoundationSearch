@@ -1,11 +1,12 @@
 import './style/App.css';
-import SearchBox from './components/SearchBox';
-import DisplayBox from './components/DisplayBox';
 import { useState, useEffect } from 'react'
 import grantsService from './services/GrantsService';
-import ClipLoader from "react-spinners/ClipLoader";
-import DownloadLink from './components/DownloadLink';
-import EmptyPage from './components/EmptyPage';
+import { Theme } from './misc/theme';
+import { ThemeProvider } from "@mui/material/styles";
+import "@fontsource/raleway";
+import "@fontsource/urbanist/600.css";
+import ResultsPage from './components/ResultsPage';
+import SearchPage from './components/SearchPage';
 
 const App = () => {
   const [loading, setLoading] = useState(false)
@@ -53,11 +54,9 @@ const App = () => {
                     .slice(1,-1)
                     .split(",")
                     
-    if(data.query != undefined && data.query.length > 0) {
+    if(data.query !== undefined && data.query.length > 0) {
       searchTerm = data.query.replace(/\s/g, '+') + "+grant"
     }
-    console.log("D: " + dom)
-    console.log("D: " + loc)
 
     if(loc !== "ALL") searchTerm = searchTerm + "+" + loc
     
@@ -87,28 +86,21 @@ const App = () => {
   }
 
   return (
-    <div className="App">
-      <SearchBox onSubmitForm={onSubmitForm}/>
-      {loading? 
-        <div className='spinner'>
-          <ClipLoader
-            color={"#2ba3ff"}
-            loading={loading}
-            size={50}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-        </div>:
-        <div className='content'>
-          {(!noResults && grants.length> 0) ? <DownloadLink data={grants} title={query}/>: <></>}
-          <div className='resultBoxes'>
-            {noResults ? <EmptyPage/>: grants.map((data, key) => {
-              return <DisplayBox key={key} name = {data.title} desc = {data.snippet} siteURL={data.link} image={data.imgURL} loc={data.loc}/>
-            })}
-          </div>
-        </div>
-      }
-    </div>
+    <ThemeProvider theme={Theme}>
+      <div className="App">
+        {grants.length > 0? 
+          <ResultsPage
+           grants={grants} 
+           onSubmitForm={onSubmitForm}
+           loading={loading}
+           noResults={noResults}
+           query={query} 
+          /> : 
+          <SearchPage
+            onSubmitForm={onSubmitForm}
+          />}
+      </div>
+    </ThemeProvider>
   );
 }
 

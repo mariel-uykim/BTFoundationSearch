@@ -1,7 +1,24 @@
+
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+.results-page {
+  width: 100%;
+}
+.search-area {
+  background-color: cornflowerblue;
+  width: 100%;
+  padding: 1%;
+}
+
+.result-area {
+  width: 100%;
+}
 .search-component {
   display: flex;
   flex-direction: column;
@@ -16,7 +33,21 @@
 }
 .title {
   font-size: 50px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color: #ecf0ff;
 }
+.search-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: cornflowerblue;
+  width: 100%;
+  margin: 0px;
+  padding: 17.8%;
+  min-height: 100%;
+}
+
 #search-box {
   width: 20em;
 }
@@ -26,7 +57,6 @@
 }
 
 .searchBtn {
-  background-color: #668fff;
   color: white;
   padding: 10px 20px;
   margin: auto 10px;
@@ -39,7 +69,7 @@
   flex-wrap: 'wrap';
   justify-content: 'center';
   align-items: 'center';
-  margin: 2em 5em;
+  margin: auto 5em;
 }
 .resultBoxes {
   display: 'flex';
@@ -54,6 +84,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #3700B3;
 }
 .result-card:hover {
   background-color: rgb(189, 189, 189);
@@ -76,5 +107,5 @@
 
 .error-msg {
   padding: 10%;
-  color: #95A5A6;
+  color: #CF6679;
 }
