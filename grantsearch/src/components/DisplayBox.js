@@ -16,8 +16,8 @@ const DisplayBox = (props) => {
         </Typography>
       </a>
       <Typography variant="body2" color="text.secondary">
-        {props.desc.length > 1000 ?
-          `${props.desc.substring(0, 1000)}...` : props.desc
+        {props.desc.length > 140 ?
+          `${props.desc.substring(0, 120)}...` : props.desc
         }
       </Typography>
     </div>

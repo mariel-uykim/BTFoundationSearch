@@ -1,23 +1,23 @@
 const organisations = [
     {
         name: "ALL",
-        domain: ".au"
+        domain: ""
     },
     {
         name: "government",
-        domain: ".gov.au"
+        domain: ".gov"
     },
     {
         name: "business",
-        domain: ".com.au,.net.au"
+        domain: ".com,.net"
     },
     {
         name: "non-profit",
-        domain: ".org.au"
+        domain: ".org"
     },
     {
         name: "education",
-        domain: ".edu.au"
+        domain: ".edu"
     }
 ]
 
