@@ -14,7 +14,7 @@ const DownloadLink = ({data, title}) => {
    return(
         <Button
             sx={{ margin: 2 }} 
-            variant="outlined" 
+            variant="contained" 
             startIcon={<DownloadIcon />} 
             onClick={csvDownload}>
             Download CSV
