@@ -1,4 +1,6 @@
-
+body {
+  background-color: #252422;
+}
 .App {
   text-align: center;
   display: flex;
@@ -11,9 +13,8 @@
   width: 100%;
 }
 .search-area {
-  background-color: cornflowerblue;
   width: 100%;
-  padding: 1%;
+  padding: 3% 1% 2% 1%;
 }
 
 .result-area {
@@ -41,7 +42,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: cornflowerblue;
   width: 100%;
   margin: 0px;
   padding: 17.8%;
@@ -78,7 +78,9 @@
   width: 80%;
 }
 .result-card {
-  border-bottom: 1px solid rgb(169, 169, 169);
+  background-color: rgb(113, 184, 255);
+  border-radius: 0.7em;
+  margin-bottom: 1em;
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -86,11 +88,14 @@
   align-items: center;
   color: #3700B3;
 }
+.result-link {
+  color: rgb(31, 77, 162);
+}
 .result-card:hover {
-  background-color: rgb(189, 189, 189);
+  background-color: #8db2bf;
 }
 .displayBox {
-  background-color: rgb(220, 220, 220);
+  background-color: rgb(191, 191, 191);
   padding: 1vw;
   margin: 2vw;
 }

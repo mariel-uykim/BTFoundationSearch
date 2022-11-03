@@ -15,9 +15,29 @@ const Theme = createTheme({
         main: "#E8E9EB",
       },
       error: {
-        main: "#D05353"
+        main: "#7776BC"
       }
     },
+    overrides: {
+      MuiOutlinedInput: {
+        root: {
+          position: "relative",
+          "& $notchedOutline": {
+            borderColor: "#FFFFFF"
+          },
+          "&:hover:not($disabled):not($focused):not($error) $notchedOutline": {
+            borderColor: "#FFFFFF",
+            "@media (hover: none)": {
+              borderColor: "#FFFFFF"
+            }
+          },
+          "&$focused $notchedOutline": {
+            borderColor: "#FFFFFF",
+            borderWidth: 1
+          }
+        }
+       }
+      }
   });
 
 export { Theme }

@@ -8,7 +8,7 @@ const DisplayBox = (props) => {
   }
   return (
     <div className='result-card'>
-      <a href={props.siteURL}>
+      <a href={props.siteURL} className='result-link'>
         <Typography gutterBottom variant="h5" component="div">
           {props.name.length > 50 ?
               `${props.name.substring(0, 40)}...` : props.name

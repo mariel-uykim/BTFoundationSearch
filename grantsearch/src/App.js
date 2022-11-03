@@ -7,6 +7,7 @@ import "@fontsource/raleway";
 import "@fontsource/urbanist/600.css";
 import ResultsPage from './components/ResultsPage';
 import SearchPage from './components/SearchPage';
+import NavBar from './components/NavBar';
 
 const App = () => {
   const [loading, setLoading] = useState(false)
@@ -88,17 +89,14 @@ const App = () => {
   return (
     <ThemeProvider theme={Theme}>
       <div className="App">
-        {grants.length > 0? 
-          <ResultsPage
+        <NavBar/>
+        <ResultsPage
            grants={grants} 
            onSubmitForm={onSubmitForm}
            loading={loading}
            noResults={noResults}
            query={query} 
-          /> : 
-          <SearchPage
-            onSubmitForm={onSubmitForm}
-          />}
+        /> 
       </div>
     </ThemeProvider>
   );
