@@ -6,6 +6,7 @@ import { TextField, Button, MenuItem, FormControl,
          }from '@mui/material'  
 import { auStates, organisations } from '../misc/constants'
 
+
 const ITEM_HEIGHT = 40
 const ITEM_PADDING_TOP = 20
 const MenuProps = {
@@ -26,12 +27,13 @@ const getStyles = (loc, location, theme) => {
     }
 }
 
+
 const SearchBox = ({onSubmitForm}) => {
   const theme = useTheme()
   const [location, setLocation] = useState("ALL")
   const [query, setQuery] = useState()
   const [domain, setDomain] = useState([])
-
+  
   const handleLocChange = (e) => {
     setLocation(e.target.value)    
   }
@@ -59,7 +61,7 @@ const SearchBox = ({onSubmitForm}) => {
                     sx={{ width: 400 }}
                     id='search-box' 
                     label="Search" 
-                    variant="filled" 
+                    variant="filled"
                     name="searchQuery"
                     required={true}
                     onChange={(e) => setQuery(e.target.value)}
