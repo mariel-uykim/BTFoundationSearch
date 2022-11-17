@@ -78,7 +78,7 @@ body {
   width: 80%;
 }
 .result-card {
-  background-color: rgb(113, 184, 255);
+  background-color: #d6e7ff;
   border-radius: 0.7em;
   margin-bottom: 1em;
   padding: 40px;
@@ -86,16 +86,19 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #3700B3;
 }
 .result-link {
-  color: rgb(31, 77, 162);
+  color: rgb(25, 60, 125);
+  text-decoration:none;
+}
+.result-link:hover {
+  color: rgb(239, 245, 255);
 }
 .result-card:hover {
-  background-color: #8db2bf;
+  background-color: #7776BC;
 }
 .displayBox {
-  background-color: rgb(191, 191, 191);
+  background-color: rgb(184, 184, 184);
   padding: 1vw;
   margin: 2vw;
 }
@@ -114,3 +117,4 @@ body {
   padding: 10%;
   color: #CF6679;
 }
+
